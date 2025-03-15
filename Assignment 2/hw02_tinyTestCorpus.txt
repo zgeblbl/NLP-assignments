@@ -1,0 +1,3 @@
+a b c d. a b b c d. a c d. a b c f. e c f. e c d. e b b c d.
+
+
