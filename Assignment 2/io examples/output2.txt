@@ -1,0 +1,44 @@
+60
+37
+8
+[['<s>', 'izmir', "türkiye'nin", 'üçüncü', 'büyük', 'şehridir', '.', '</s>'], ['<s>', "türkiye'nin", 'batısında', 'yer', 'alır', '.', '</s>'], ['<s>', 'ısparta', 'şehri', 'göller', 'bölgesinde', 'yer', 'alır', '.', '</s>'], ['<s>', 'gülleri', 'ile', 'meşhurdur', '!', '</s>'], ['<s>', 'değil', 'mi', '?', '</s>'], ['<s>', 'ayrı', 'bir', 'satırdaki', 'noktasız', 'bir', 'başlık', 'bir', 'cümle', 'olmalı', '</s>'], ['<s>', 'bu', 'satırda', 'son', 'paragraf', '.', '</s>'], ['<s>', 'buda', 'paragrafın', 'ikinci', 'satırı', '.', '</s>']]
+[('</s>', 8), ('<s>', 8), ('.', 5), ('bir', 3), ('alır', 2), ("türkiye'nin", 2), ('yer', 2), ('!', 1), ('?', 1), ('ayrı', 1), ('batısında', 1), ('başlık', 1), ('bu', 1), ('buda', 1), ('bölgesinde', 1), ('büyük', 1), ('cümle', 1), ('değil', 1), ('göller', 1), ('gülleri', 1), ('ikinci', 1), ('ile', 1), ('izmir', 1), ('meşhurdur', 1), ('mi', 1), ('noktasız', 1), ('olmalı', 1), ('paragraf', 1), ('paragrafın', 1), ('satırda', 1), ('satırdaki', 1), ('satırı', 1), ('son', 1), ('üçüncü', 1), ('ısparta', 1), ('şehri', 1), ('şehridir', 1)]
+[(('.', '</s>'), 5), (('alır', '.'), 2), (('yer', 'alır'), 2), (('!', '</s>'), 1), (('<s>', 'ayrı'), 1), (('<s>', 'bu'), 1), (('<s>', 'buda'), 1), (('<s>', 'değil'), 1), (('<s>', 'gülleri'), 1), (('<s>', 'izmir'), 1), (('<s>', "türkiye'nin"), 1), (('<s>', 'ısparta'), 1), (('?', '</s>'), 1), (('ayrı', 'bir'), 1), (('batısında', 'yer'), 1), (('başlık', 'bir'), 1), (('bir', 'başlık'), 1), (('bir', 'cümle'), 1), (('bir', 'satırdaki'), 1), (('bu', 'satırda'), 1), (('buda', 'paragrafın'), 1), (('bölgesinde', 'yer'), 1), (('büyük', 'şehridir'), 1), (('cümle', 'olmalı'), 1), (('değil', 'mi'), 1), (('göller', 'bölgesinde'), 1), (('gülleri', 'ile'), 1), (('ikinci', 'satırı'), 1), (('ile', 'meşhurdur'), 1), (('izmir', "türkiye'nin"), 1), (('meşhurdur', '!'), 1), (('mi', '?'), 1), (('noktasız', 'bir'), 1), (('olmalı', '</s>'), 1), (('paragraf', '.'), 1), (('paragrafın', 'ikinci'), 1), (('satırda', 'son'), 1), (('satırdaki', 'noktasız'), 1), (('satırı', '.'), 1), (('son', 'paragraf'), 1), (("türkiye'nin", 'batısında'), 1), (("türkiye'nin", 'üçüncü'), 1), (('üçüncü', 'büyük'), 1), (('ısparta', 'şehri'), 1), (('şehri', 'göller'), 1), (('şehridir', '.'), 1)]
+3
+2
+2
+0
+0.05
+0.03333333333333333
+0.03333333333333333
+0
+0
+0
+2
+1
+0
+0
+0
+0
+0
+1.0
+0.3333333333333333
+0
+0
+0
+0.04081632653061224
+0.030612244897959183
+0.030612244897959183
+0.01020408163265306
+0.024390243902439025
+0.025
+0.075
+0.04878048780487805
+0.024390243902439025
+0.025
+0.02631578947368421
+0.02631578947368421
+8.750097223302464e-08
+0.021739130434782608
+0.09183673469387756
+0.04081632653061224

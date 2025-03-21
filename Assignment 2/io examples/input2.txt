@@ -1,0 +1,57 @@
+lm = ngramLM()  
+lm.trainFromFile("hw02_tinyCorpus.txt")
+
+with codecs.open("output2.txt", "w", encoding="utf-8") as f:
+
+    print(lm.numOfTokens, file=f)
+    print(lm.sizeOfVocab, file=f)
+    print(lm.numOfSentences, file=f)
+
+    print(lm.sentences, file=f)
+    print(lm.vocab(), file=f)
+    print(lm.bigrams(), file=f)
+
+    print(lm.unigramCount('bir'), file=f)
+    print(lm.unigramCount('yer'), file=f)
+    print(lm.unigramCount('alır'), file=f)
+    print(lm.unigramCount('kuş'), file=f)
+
+    print(lm.unigramProb('bir'), file=f)
+    print(lm.unigramProb('yer'), file=f)
+    print(lm.unigramProb('alır'), file=f)
+    print(lm.unigramProb('kuş'), file=f)
+
+    print(lm.bigramCount(('bir','yer')), file=f)
+    print(lm.bigramCount(('yer','bir')), file=f)
+    print(lm.bigramCount(('yer','alır')), file=f)
+    print(lm.bigramCount(('bir','başlık')), file=f)
+    print(lm.bigramCount(('bir','kuş')), file=f)
+    print(lm.bigramCount(('yer','kuş')), file=f)
+    print(lm.bigramCount(('kuş','bir')), file=f)
+
+    print(lm.bigramProb(('bir','yer')), file=f)
+    print(lm.bigramProb(('yer','bir')), file=f)
+    print(lm.bigramProb(('yer','alır')), file=f)
+    print(lm.bigramProb(('bir','başlık')), file=f)
+    print(lm.bigramProb(('bir','kuş')), file=f)
+    print(lm.bigramProb(('yer','kuş')), file=f)
+    print(lm.bigramProb(('kuş','bir')), file=f)
+
+    print(lm.unigramProb_SmoothingUNK('bir'), file=f)
+    print(lm.unigramProb_SmoothingUNK('yer'), file=f)
+    print(lm.unigramProb_SmoothingUNK('alır'), file=f)
+    print(lm.unigramProb_SmoothingUNK('kuş'), file=f)
+
+    print(lm.bigramProb_SmoothingUNK(('bir','yer')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('yer','bir')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('yer','alır')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('bir','başlık')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('bir','kuş')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('yer','kuş')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('kuş','bir')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('kuş','kuş')), file=f)
+
+    print(lm.sentenceProb(['<s>',"türkiye'nin",'batısında','yer','alır','.','</s>']), file=f)
+    print(lm.sentenceProb(['<s>','</s>']), file=f)
+    print(lm.sentenceProb(['<s>']), file=f)
+    print(lm.sentenceProb(['bir']), file=f)

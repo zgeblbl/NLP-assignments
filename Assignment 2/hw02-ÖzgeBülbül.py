@@ -1,3 +1,4 @@
+# ozge bulbul - 2220765008
 # -*- coding: utf-8 -*-
 """
 Created on Sat Mar  8 15:06:51 2025
@@ -20,7 +21,6 @@ class ngramLM:
         self.numOfSentences = 0
         self.sentences = []
         self.allTokens = []
-        # TO DO 
 
     def trainFromFile(self,fn):
         with codecs.open(fn, 'r', encoding='utf-8') as file:
@@ -131,7 +131,6 @@ class ngramLM:
 
     def bigramCount(self, bigram):
         bigramList = self.bigrams()
-        bigram_count = 0
         for item in bigramList:
             if bigram == item[0]:
                 return item[1]
@@ -140,39 +139,76 @@ class ngramLM:
         # TO DO
 
     def unigramProb(self, word):
+        if self.unigramCount(word) == 0:
+            return 0
         return self.unigramCount(word) / self.numOfTokens
  
-    #def bigramProb(self, bigram):
-        # TO DO
-        # returns unsmoothed bigram probability value
+    def bigramProb(self, bigram):
+        if self.unigramCount(bigram[0]) == 0 or self.bigramCount(bigram) == 0 or self.unigramCount(bigram[1]) == 0:
+            return 0
+        return self.bigramCount(bigram) / self.unigramCount(bigram[0])
+        
 
     def unigramProb_SmoothingUNK(self, word):
         return (self.unigramCount(word) +1) / (self.numOfTokens + (self.sizeOfVocab+1))
 
-
-lm = ngramLM()  
-lm.trainFromFile("hw02_tinyCorpus.txt")
-print(lm.bigrams())
-print(lm.bigramCount(('bir','yer'))   )
-print(lm.bigramCount(('yer','bir'))   )
-print(lm.bigramCount(('yer','alır'))  )
-print(lm.bigramCount(('bir','başlık')))
-print(lm.bigramCount(('bir','kuş'))   )
-print(lm.bigramCount(('yer','kuş'))   )
-print(lm.bigramCount(('kuş','bir')))
-
-    #def bigramProb_SmoothingUNK(self, bigram):
-        # TO DO
-        # returns smoothed bigram probability value
-
-    #def sentenceProb(self,sent):
-        # TO DO 
-        # sent is a list of tokens
-        # returns the probability of sent using smoothed bigram probability values
-
-    #def generateSentence(self,sent=["<s>"],maxFollowWords=1,maxWordsInSent=20):
-
+    def bigramProb_SmoothingUNK(self, bigram):
+        if self.unigramCount(bigram[0]) == 0:
+            return (1 / (self.sizeOfVocab+1))
+        if self.unigramCount(bigram[1]) == 0:
+            return (1 / (self.unigramCount(bigram[0]) + self.sizeOfVocab + 1))
+        return ((self.bigramCount(bigram) + 1) / (self.unigramCount(bigram[0]) + (self.sizeOfVocab+1)))
         
-        # TO DO 
-        # sent is a list of tokens
-        # returns the generated sentence (a list of tokens)
+    def sentenceProb(self,sent):
+        bigram_list = []
+        if len(sent) == 0:
+            return 0
+        if len(sent) == 1:
+            return self.unigramProb_SmoothingUNK(sent[0])
+        i = 0
+        while True:
+            bigram_list.append((sent[i], sent[i+1]))
+            i +=1
+            if i+1 == len(sent):
+                break
+        
+        log_prob = 0
+        for item in bigram_list:
+            log_prob += math.log(self.bigramProb_SmoothingUNK(item))
+        return math.exp(log_prob)
+
+    def generateSentence(self,sent=["<s>"],maxFollowWords=1,maxWordsInSent=20):
+        sentence = []
+        sentence.extend(sent)
+        last_word = sent[-1]
+        if maxWordsInSent == 0:
+            sentence.append("</s>")
+            return sentence
+        while len(sentence) < maxWordsInSent+2:
+            last_word_bigrams = [(bigram, count) for bigram, count in self.bigrams() if bigram[0] == last_word]
+            
+            last_word_bigrams.sort(key=lambda x: (-x[1], x[0][1]))
+            top_bigrams = last_word_bigrams[:maxFollowWords]
+            follow_words = [bigram[0][1] for bigram in top_bigrams]
+            freqs = [bigram[1] for bigram in top_bigrams]
+            freq_sum = sum(freqs)
+
+            value_random = random.randint(1, freq_sum)
+            cumulative_sum = 0
+            for i, freq in enumerate(freqs):
+                cumulative_sum += freq
+                if value_random <= cumulative_sum:
+                    chosen_word = follow_words[i]
+                    break
+            sentence.append(chosen_word)
+            if chosen_word == '</s>':
+                break
+            if len(sentence) == maxWordsInSent+1:
+                sentence.append('</s>')
+                break
+            last_word = chosen_word
+
+        return sentence
+
+
+

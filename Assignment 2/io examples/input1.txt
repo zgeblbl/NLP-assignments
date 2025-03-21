@@ -1,0 +1,49 @@
+lm = ngramLM()  
+lm.trainFromFile("hw02_tinyTestCorpus.txt")
+
+with codecs.open("output1.txt", "w", encoding="utf-8") as f:
+
+    print(lm.numOfTokens, file=f)
+    print(lm.sizeOfVocab, file=f)
+    print(lm.numOfSentences, file=f)
+
+    print(lm.sentences, file=f)
+    print(lm.vocab(), file=f)
+    print(lm.bigrams(), file=f)
+
+    print(lm.unigramCount('a'), file=f)
+    print(lm.unigramCount('b'), file=f)
+    print(lm.unigramCount('g'), file=f)
+
+    print(lm.unigramProb('a'), file=f)
+    print(lm.unigramProb('b'), file=f)
+    print(lm.unigramProb('g'), file=f)
+
+    print(lm.bigramCount(('a', 'b')), file=f)
+    print(lm.bigramCount(('b', 'a')), file=f)
+    print(lm.bigramCount(('a', 'g')), file=f)
+    print(lm.bigramCount(('g', 'a')), file=f)
+    print(lm.bigramCount(('g', 'g')), file=f)
+
+    print(lm.bigramProb(('a', 'b')), file=f)
+    print(lm.bigramProb(('b', 'a')), file=f)
+    print(lm.bigramProb(('g', 'a')), file=f)
+    print(lm.bigramProb(('a', 'g')), file=f)
+    print(lm.bigramProb(('g', 'g')), file=f)
+
+    print(lm.unigramProb_SmoothingUNK('a'), file=f)
+    print(lm.unigramProb_SmoothingUNK('b'), file=f)
+    print(lm.unigramProb_SmoothingUNK('g'), file=f)
+
+    print(lm.bigramProb_SmoothingUNK(('a', 'b')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('b', 'a')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('g', 'a')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('a', 'g')), file=f)
+    print(lm.bigramProb_SmoothingUNK(('g', 'g')), file=f)
+    
+    print(lm.sentenceProb(['<s>', 'a', 'f', 'd', '.', '</s>']), file=f)
+    print(lm.sentenceProb(['<s>', 'a', 'c', 'd', '.', '</s>']), file=f)
+    print(lm.sentenceProb(['<s>', 'a', 'b', 'c', 'd', '.', '</s>']), file=f)
+    print(lm.sentenceProb(['<s>', '</s>']), file=f)
+    print(lm.sentenceProb(['<s>']), file=f)
+    print(lm.sentenceProb(['a']), file=f)
